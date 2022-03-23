@@ -1,5 +1,8 @@
 class HangmanCanvas {
   constructor(secretWord) {
+    /**
+     * @type {HTMLCanvasElement}
+     */
     this.context = document.getElementById('hangman').getContext('2d');
     // ... your code goes here
   }
