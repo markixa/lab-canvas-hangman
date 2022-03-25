@@ -3,7 +3,7 @@ class Hangman {
     /* an array to store all the words that could be given to a player to guess. 
     When the class is instantiated, all the words passed to the constructor as an argument 
     will be saved in this property.*/
-    this.words = words;
+    this.words = [];
     // ... your code goes here
     /* here we will store the word that has been picked as a secret word for the current game. 
     Every time a new game starts, a random word from the this.words array needs to be picked 
@@ -42,36 +42,54 @@ class Hangman {
    */
   checkIfLetter(keyCode) {
     // ... your code goes here
-    
+    document.addEventListener("keydown", (event) => {
+      if(keyCode>=a&&keyCode<=z){
+        return true;
+      }else{
+        return false;
+      }
+    })    
   }
 
   /**
    * method that should check 
    * if the letter passed as an argument has already been pressed. 
    * It should return true if it was not or false in the opposite case.
-   * @param {*} letter 
+   * @param {*} letters
    * @return boolean
    */
   checkClickedLetters(letter) {
     // ... your code goes here
+    //this.words
+    this.letters.forEach((el) =>{
+      if(el===letter){
+        return true;
+      }else{
+        return false;
+      }
+    })
   }
 
   /**
    * method that should add the passed letter to the guessedLetters property. 
    * This could be a good place to check if the user won.
-   * @param {*} letter 
+   * @param {*} guessedLetters 
    */
   addCorrectLetter(letter) {
     // ... your code goes here
+    this.guessedLetters+=letter;
+    this.checkGameOver();
   }
 
   /**
    * method that should subtract one from the variable errorsLeft. 
    * It also should push this letter in the array of letters if the letter is not there already.
-   * @param {*} letter 
+   * @param {*} letters 
    */
   addWrongLetter(letter) {
     // ... your code goes here
+    this.letters.push.letter;
+    this.errorsLeft--;
   }
 
   /**
@@ -82,6 +100,11 @@ class Hangman {
    */
   checkGameOver() {
     // ... your code goes here
+    if(this.errorsLeft===0){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   /**
@@ -89,6 +112,11 @@ class Hangman {
    */
   checkWinner() {
     // ... your code goes here
+    if(htis.secretWord==this.guessedLetters){
+      return true;
+    }else{
+      return false;
+    }
   }
 }
 
@@ -101,8 +129,8 @@ if (startGameButton) {
     hangman = new Hangman(['node', 'javascript', 'react', 'miami', 'paris', 'amsterdam', 'lisboa']);
 
     // HINT (uncomment when start working on the canvas portion of the lab)
-    // hangman.secretWord = hangman.pickWord();
-    // hangmanCanvas = new HangmanCanvas(hangman.secretWord);
+    hangman.secretWord = hangman.pickWord();
+    hangmanCanvas = new HangmanCanvas(hangman.secretWord);
 
     // ... your code goes here
   });
